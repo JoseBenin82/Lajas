@@ -1,0 +1,92 @@
+/*
+ * Footer.css — Estilos del pie de página.
+ * Propósito: layout en columnas responsivo sobre fondo piedra oscuro, con
+ * jerarquía clara entre marca, navegación y contacto.
+ */
+
+.footer {
+  background: var(--c-piedra-900);
+  color: var(--c-arena-200);
+  padding-block: var(--space-8) var(--space-5);
+  margin-top: auto;
+}
+
+.footer__grid {
+  display: grid;
+  grid-template-columns: 1.6fr 1fr 1fr 1.2fr;
+  gap: var(--space-6);
+  padding-bottom: var(--space-7);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.footer__logo {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  color: #fff;
+}
+.footer__logo strong {
+  color: var(--accent-soft);
+  font-weight: 600;
+}
+.footer__tagline {
+  margin-top: var(--space-3);
+  color: var(--c-piedra-400);
+  font-size: var(--text-sm);
+  max-width: 34ch;
+}
+.footer__origin {
+  margin-top: var(--space-4);
+  font-size: var(--text-xs);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  color: var(--accent-soft);
+}
+
+.footer__col {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.footer__col h4 {
+  font-family: var(--font-sans);
+  font-size: var(--text-xs);
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: #fff;
+  margin-bottom: var(--space-2);
+}
+.footer__col a {
+  color: var(--c-arena-200);
+  font-size: var(--text-sm);
+}
+.footer__col a:hover {
+  color: var(--accent-soft);
+}
+.footer__muted {
+  color: var(--c-piedra-400);
+  font-size: var(--text-sm);
+}
+
+.footer__bottom {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+  padding-top: var(--space-5);
+  font-size: var(--text-xs);
+  color: var(--c-piedra-400);
+}
+
+@media (max-width: 860px) {
+  .footer__grid {
+    grid-template-columns: 1fr 1fr;
+  }
+  .footer__brand {
+    grid-column: 1 / -1;
+  }
+}
+@media (max-width: 520px) {
+  .footer__grid {
+    grid-template-columns: 1fr;
+  }
+}

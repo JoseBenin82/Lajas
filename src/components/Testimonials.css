@@ -1,0 +1,83 @@
+/*
+ * Testimonials.css — Estilos de la prueba social editorial.
+ * La primera cita es protagonista (grande, centrada, sobre superficie cálida);
+ * el resto va en una fila de tarjetas más sobrias. La comilla SVG aporta el
+ * acento editorial en vez de estrellas.
+ */
+
+.testimonials {
+  display: grid;
+  gap: var(--space-5);
+}
+
+/* Comilla decorativa */
+.tcard__mark {
+  color: var(--accent-soft);
+  margin-bottom: var(--space-1);
+}
+
+/* ---- Cita protagonista ---- */
+.tcard--lead {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+  margin: 0;
+  padding: var(--space-7) var(--space-6);
+  text-align: center;
+  background: var(--bg-soft);
+  border: 1px solid var(--surface-line);
+  border-radius: var(--radius-lg);
+}
+.tcard--lead .tcard__mark {
+  color: var(--accent);
+}
+.tcard--lead .tcard__quote {
+  font-size: clamp(var(--text-xl), 3vw, var(--text-3xl));
+  line-height: var(--leading-snug);
+  letter-spacing: var(--tracking-tight);
+  max-width: 22ch;
+}
+
+/* ---- Resto de reseñas ---- */
+.testimonials__rest {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-5);
+}
+.tcard {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-5);
+  background: var(--bg-card);
+  border: 1px solid var(--surface-line);
+  border-radius: var(--radius-lg);
+  margin: 0;
+}
+.tcard__quote {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 400;
+  line-height: var(--leading-snug);
+  color: var(--ink);
+  margin: 0;
+  flex: 1;
+}
+.tcard__author {
+  display: flex;
+  flex-direction: column;
+  font-size: var(--text-sm);
+}
+.tcard__author strong {
+  color: var(--ink);
+}
+.tcard__author span {
+  color: var(--ink-muted);
+}
+
+@media (max-width: 760px) {
+  .testimonials__rest {
+    grid-template-columns: 1fr;
+  }
+}

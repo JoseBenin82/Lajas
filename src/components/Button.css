@@ -1,0 +1,95 @@
+/*
+ * Button.css — Estilos del componente Button.
+ * Propósito: definir variantes (primary/secondary/ghost), tamaños y estados
+ * (hover/active/disabled) del CTA, consumiendo los tokens de diseño.
+ */
+
+.btn {
+  --btn-py: var(--space-3);
+  --btn-px: var(--space-5);
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: var(--space-2);
+  font-family: var(--font-sans);
+  font-weight: 600;
+  font-size: var(--text-base);
+  line-height: 1;
+  text-align: center;
+  white-space: nowrap;
+  padding: var(--btn-py) var(--btn-px);
+  border: 1.5px solid transparent;
+  border-radius: var(--radius-pill);
+  cursor: pointer;
+  transition: background-color var(--t-fast), color var(--t-fast),
+    border-color var(--t-fast), transform var(--t-fast), box-shadow var(--t-base);
+  user-select: none;
+}
+
+/* Icono + texto alineados dentro de un botón. */
+.btn__withicon {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.45em;
+}
+
+.btn:hover {
+  transform: translateY(-1px);
+}
+.btn:active {
+  transform: translateY(0);
+}
+
+.btn:disabled,
+.btn[aria-disabled='true'] {
+  opacity: 0.5;
+  cursor: not-allowed;
+  transform: none;
+}
+
+/* ---- Variantes ---------------------------------------------------------- */
+.btn--primary {
+  background-color: var(--accent);
+  color: var(--accent-ink);
+  box-shadow: var(--shadow-sm);
+}
+.btn--primary:hover {
+  background-color: var(--accent-hover);
+  box-shadow: var(--shadow-md);
+}
+
+.btn--secondary {
+  background-color: transparent;
+  color: var(--ink);
+  border-color: var(--ink);
+}
+.btn--secondary:hover {
+  background-color: var(--ink);
+  color: var(--ink-invert);
+}
+
+.btn--ghost {
+  background-color: transparent;
+  color: var(--ink-soft);
+  border-color: var(--surface-line);
+}
+.btn--ghost:hover {
+  border-color: var(--ink);
+  color: var(--ink);
+}
+
+/* ---- Tamaños ------------------------------------------------------------ */
+.btn--sm {
+  --btn-py: var(--space-2);
+  --btn-px: var(--space-4);
+  font-size: var(--text-sm);
+}
+.btn--lg {
+  --btn-py: var(--space-4);
+  --btn-px: var(--space-6);
+  font-size: var(--text-lg);
+}
+
+.btn--full {
+  width: 100%;
+}

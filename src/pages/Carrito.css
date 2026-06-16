@@ -1,0 +1,201 @@
+/*
+ * Carrito.css — Estilos del carrito (lista de líneas + resumen pegajoso).
+ */
+
+.carrito {
+  padding-bottom: var(--space-9);
+}
+.carrito h1 {
+  margin-bottom: var(--space-6);
+}
+
+.carrito__layout {
+  display: grid;
+  grid-template-columns: 1fr 340px;
+  gap: var(--space-6);
+  align-items: start;
+}
+
+.carrito__list {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.carrito__item {
+  display: grid;
+  grid-template-columns: 72px 1fr auto auto auto;
+  align-items: center;
+  gap: var(--space-4);
+  padding: var(--space-4);
+  background: var(--bg-card);
+  border: 1px solid var(--surface-line);
+  border-radius: var(--radius-md);
+}
+.carrito__thumb {
+  width: 72px;
+}
+.carrito__info {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+}
+.carrito__name {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 600;
+}
+.carrito__name:hover {
+  color: var(--accent);
+}
+.carrito__meta {
+  font-size: var(--text-xs);
+  color: var(--ink-muted);
+}
+.carrito__unit {
+  font-size: var(--text-sm);
+  color: var(--ink-soft);
+}
+
+.carrito__qty label {
+  display: inline-flex;
+  align-items: center;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--ink-muted);
+}
+.carrito__qty input {
+  width: 76px;
+  font-family: var(--font-sans);
+  font-size: var(--text-base);
+  text-align: right;
+  color: var(--ink);
+  background: var(--bg-soft);
+  border: 1.5px solid var(--surface-line);
+  border-radius: var(--radius-sm);
+  padding: 8px 10px;
+}
+.carrito__qty input:focus-visible {
+  border-color: var(--accent);
+  outline: none;
+}
+
+.carrito__line {
+  font-family: var(--font-display);
+  font-size: var(--text-lg);
+  font-weight: 600;
+  white-space: nowrap;
+}
+
+.carrito__remove {
+  background: none;
+  border: none;
+  color: var(--ink-muted);
+  font-size: var(--text-lg);
+  cursor: pointer;
+  line-height: 1;
+  padding: var(--space-2);
+  border-radius: var(--radius-sm);
+}
+.carrito__remove:hover {
+  color: var(--accent-hover);
+  background: var(--bg-soft);
+}
+
+/* ---- Resumen ---- */
+.carrito__summary {
+  position: sticky;
+  top: calc(var(--nav-height) + var(--space-4));
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  padding: var(--space-5);
+  background: var(--bg-card);
+  border: 1px solid var(--surface-line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+.carrito__summary h2 {
+  font-size: var(--text-xl);
+}
+.carrito__sumrow {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: var(--space-3);
+  font-size: var(--text-base);
+}
+.carrito__sumrow strong {
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+}
+.carrito__sumrow--muted {
+  font-size: var(--text-sm);
+  color: var(--ink-muted);
+}
+.carrito__flete {
+  font-size: var(--text-xs);
+  color: var(--ink-muted);
+  padding-bottom: var(--space-2);
+  border-bottom: 1px solid var(--surface-line);
+}
+.carrito__continue {
+  text-align: center;
+  font-size: var(--text-sm);
+  color: var(--ink-soft);
+}
+.carrito__continue:hover {
+  color: var(--accent);
+}
+.carrito__msi {
+  font-size: var(--text-xs);
+  color: var(--ink-muted);
+  text-align: center;
+}
+
+/* ---- Vacío ---- */
+.carrito__empty {
+  text-align: center;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: var(--space-4);
+}
+.carrito__empty .lead {
+  max-width: 44ch;
+}
+
+@media (max-width: 860px) {
+  .carrito__layout {
+    grid-template-columns: 1fr;
+  }
+  .carrito__summary {
+    position: static;
+  }
+  .carrito__item {
+    grid-template-columns: 56px 1fr auto;
+    grid-template-areas:
+      'thumb info remove'
+      'thumb qty line';
+    row-gap: var(--space-3);
+  }
+  .carrito__thumb {
+    grid-area: thumb;
+    width: 56px;
+  }
+  .carrito__info {
+    grid-area: info;
+  }
+  .carrito__qty {
+    grid-area: qty;
+  }
+  .carrito__line {
+    grid-area: line;
+    text-align: right;
+  }
+  .carrito__remove {
+    grid-area: remove;
+    justify-self: end;
+  }
+}

@@ -1,0 +1,138 @@
+/*
+ * Nosotros.css — Estilos de la página de historia/proceso/valores.
+ */
+
+.nosotros__hero {
+  padding-bottom: var(--space-7);
+  background: var(--bg-soft);
+  border-bottom: 1px solid var(--surface-line);
+}
+.nosotros__herogrid {
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  gap: var(--space-7);
+  align-items: center;
+}
+.nosotros__herogrid .lead {
+  margin-top: var(--space-4);
+}
+.nosotros__heromedia {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+}
+.nosotros__heromedia .swatch {
+  box-shadow: var(--shadow-sm);
+}
+
+.nosotros__dos {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-6);
+}
+.nosotros__dos p {
+  color: var(--ink-soft);
+}
+
+/* Proceso (timeline vertical) ----
+   En vez de 4 columnas iguales, los pasos cuelgan de un riel vertical con el
+   número sentado sobre la línea. Lee como un recorrido "de la cantera a tu
+   obra" y rompe la simetría de la cuadrícula. */
+.nosotros__proceso {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-6);
+  max-width: 680px;
+  padding-left: calc(44px + var(--space-5));
+}
+/* El riel: degradado de acento a línea, con margen para no rebasar arriba/abajo. */
+.nosotros__proceso::before {
+  content: '';
+  position: absolute;
+  left: 21px;
+  top: 8px;
+  bottom: 8px;
+  width: 2px;
+  background: linear-gradient(
+    var(--accent-soft),
+    var(--surface-line) 75%,
+    transparent
+  );
+}
+.nosotros__paso {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.nosotros__num {
+  position: absolute;
+  left: calc(-1 * (44px + var(--space-5)));
+  top: -2px;
+  width: 44px;
+  height: 44px;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-display);
+  font-size: var(--text-xl);
+  font-weight: 600;
+  color: var(--accent);
+  background: var(--bg-card);
+  border: 1.5px solid var(--accent-soft);
+  border-radius: var(--radius-pill);
+}
+.nosotros__paso p {
+  font-size: var(--text-sm);
+  color: var(--ink-soft);
+}
+
+/* Valores */
+.nosotros__valores {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: var(--space-5);
+}
+.nosotros__valor {
+  padding: var(--space-5);
+  background: var(--bg-card);
+  border: 1px solid var(--surface-line);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius-md);
+}
+.nosotros__valor h3 {
+  margin-bottom: var(--space-2);
+}
+.nosotros__valor p {
+  color: var(--ink-soft);
+  font-size: var(--text-sm);
+}
+
+/* Garantía */
+.nosotros__garantia {
+  display: grid;
+  grid-template-columns: 1.4fr 1fr;
+  gap: var(--space-6);
+  align-items: center;
+}
+.nosotros__garantia .lead {
+  color: var(--c-arena-200);
+  margin-top: var(--space-3);
+}
+.nosotros__garantiacta {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+@media (max-width: 860px) {
+  .nosotros__herogrid,
+  .nosotros__dos,
+  .nosotros__garantia {
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+  }
+  .nosotros__valores {
+    grid-template-columns: 1fr;
+  }
+}

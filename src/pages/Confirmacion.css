@@ -1,0 +1,126 @@
+/*
+ * Confirmacion.css — Estilos de la página de confirmación de pedido.
+ */
+
+.confirm {
+  padding-bottom: var(--space-9);
+  text-align: center;
+}
+.confirm h1 {
+  margin-top: var(--space-2);
+}
+.confirm h1:focus-visible {
+  outline: none;
+}
+.confirm .lead {
+  margin: var(--space-3) auto var(--space-6);
+  max-width: 50ch;
+}
+
+.confirm__check {
+  width: 64px;
+  height: 64px;
+  margin: 0 auto var(--space-4);
+  display: grid;
+  place-items: center;
+  color: #fff;
+  background: var(--c-verde-600);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-md);
+  animation: pop 360ms var(--ease);
+}
+@keyframes pop {
+  from {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+.confirm__card {
+  text-align: left;
+  background: var(--bg-card);
+  border: 1px solid var(--surface-line);
+  border-radius: var(--radius-lg);
+  padding: var(--space-5);
+  margin-bottom: var(--space-6);
+  box-shadow: var(--shadow-sm);
+}
+.confirm__row {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+  padding-block: var(--space-2);
+}
+.confirm__row strong {
+  font-family: var(--font-display);
+}
+.confirm__row--muted {
+  color: var(--ink-muted);
+  border-bottom: 1px solid var(--surface-line);
+  padding-bottom: var(--space-3);
+  margin-bottom: var(--space-3);
+}
+.confirm__items {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.confirm__items li {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-3);
+  font-size: var(--text-sm);
+  color: var(--ink-soft);
+}
+
+.confirm__next {
+  text-align: left;
+  margin-bottom: var(--space-6);
+}
+.confirm__next h2 {
+  font-size: var(--text-xl);
+  margin-bottom: var(--space-4);
+}
+.confirm__steps {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+  counter-reset: step;
+}
+.confirm__steps li {
+  position: relative;
+  padding-left: var(--space-7);
+  color: var(--ink-soft);
+}
+.confirm__steps li::before {
+  counter-increment: step;
+  content: counter(step);
+  position: absolute;
+  left: 0;
+  top: 0;
+  width: 28px;
+  height: 28px;
+  display: grid;
+  place-items: center;
+  font-family: var(--font-display);
+  font-weight: 600;
+  color: var(--accent-ink);
+  background: var(--accent);
+  border-radius: var(--radius-pill);
+}
+
+.confirm__cta {
+  display: flex;
+  gap: var(--space-3);
+  justify-content: center;
+  flex-wrap: wrap;
+  margin-bottom: var(--space-5);
+}
+.confirm__note {
+  font-size: var(--text-xs);
+  color: var(--ink-muted);
+}

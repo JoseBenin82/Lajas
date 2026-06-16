@@ -1,0 +1,51 @@
+/*
+ * WhatsAppFab.css — Estilos del botón flotante de WhatsApp.
+ * Propósito: posición fija, color de marca WhatsApp y un pulso sutil para
+ * atraer la mirada sin ser intrusivo.
+ */
+
+.wa-fab {
+  position: fixed;
+  right: clamp(var(--space-4), 4vw, var(--space-6));
+  bottom: clamp(var(--space-4), 4vw, var(--space-6));
+  z-index: 90;
+  width: 56px;
+  height: 56px;
+  display: grid;
+  place-items: center;
+  color: #fff;
+  background: #25d366;
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-lg);
+  transition: transform var(--t-base), box-shadow var(--t-base);
+}
+.wa-fab:hover {
+  transform: scale(1.06);
+  color: #fff;
+}
+.wa-fab svg {
+  position: relative;
+  z-index: 1;
+}
+
+.wa-fab__pulse {
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: #25d366;
+  opacity: 0.55;
+  animation: wa-pulse 2.4s var(--ease) infinite;
+}
+@keyframes wa-pulse {
+  0% {
+    transform: scale(1);
+    opacity: 0.5;
+  }
+  70% {
+    transform: scale(1.7);
+    opacity: 0;
+  }
+  100% {
+    opacity: 0;
+  }
+}

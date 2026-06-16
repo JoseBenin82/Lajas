@@ -1,0 +1,208 @@
+/*
+ * Home.css — Estilos específicos de la home (props, usos, teaser calculadora,
+ * historia y cierre). Las secciones reutilizan .section / Section.
+ */
+
+/* ---- Propuesta de valor ---- */
+.section--props {
+  padding-block: var(--space-7);
+}
+.props {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: var(--space-5);
+}
+.prop {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.prop__icon {
+  width: 34px;
+  height: 34px;
+  color: var(--accent);
+  margin-bottom: var(--space-2);
+}
+.prop__t {
+  font-size: var(--text-lg);
+}
+.prop__d {
+  font-size: var(--text-sm);
+  color: var(--ink-soft);
+}
+
+.home__more {
+  display: flex;
+  justify-content: center;
+  margin-top: var(--space-6);
+}
+
+/* ---- Galería de usos (mosaico bento) ----
+   En vez de 4 columnas idénticas, la primera celda manda como pieza grande
+   (2×2) y una intermedia se extiende a lo ancho; el resto son celdas simples.
+   La asimetría rompe el "todo igual" y da jerarquía editorial. Las texturas
+   llenan la altura de cada celda (height:100% pisa el aspect-ratio del swatch). */
+.usos {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: 156px;
+  grid-auto-flow: row dense;
+  gap: var(--space-3);
+}
+.uso {
+  position: relative;
+  border-radius: var(--radius-md);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: transform var(--t-base), box-shadow var(--t-base);
+}
+.uso--feature {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+.uso--wide {
+  grid-column: span 2;
+}
+.uso:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+.uso .swatch {
+  border-radius: 0;
+  height: 100%;
+}
+.uso--feature .uso__label {
+  font-size: var(--text-2xl);
+}
+.uso::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to top, rgba(42, 38, 32, 0.7), transparent 60%);
+}
+.uso__label {
+  position: absolute;
+  left: var(--space-3);
+  bottom: var(--space-3);
+  z-index: 1;
+  color: #fff;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--text-lg);
+}
+
+/* ---- Teaser calculadora ---- */
+.home__calc {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-7);
+  align-items: center;
+}
+.home__calcbullets {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-top: var(--space-4);
+}
+.home__calcbullets li {
+  position: relative;
+  padding-left: var(--space-5);
+  color: var(--ink-soft);
+}
+/* Palomita SVG (no glifo): trazo consistente, coloreada con el acento vía mask. */
+.home__calcbullets li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.42em;
+  width: 1.05em;
+  height: 1.05em;
+  background-color: var(--accent);
+  -webkit-mask: var(--icon-check) center / contain no-repeat;
+  mask: var(--icon-check) center / contain no-repeat;
+}
+
+/* ---- Historia ---- */
+.home__historia {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-7);
+  align-items: center;
+}
+.home__historiatext .lead {
+  color: var(--c-arena-200);
+  margin-block: var(--space-4) var(--space-6);
+}
+.home__historiamedia {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-3);
+}
+.home__historiamedia .swatch:first-child {
+  grid-column: 1 / -1;
+}
+
+/* ---- Cierre ---- */
+.home__closing {
+  background: linear-gradient(135deg, var(--accent), var(--accent-hover));
+  color: #fff;
+  padding-block: var(--space-9);
+  text-align: center;
+}
+.home__closinginner h2 {
+  color: #fff;
+}
+.home__closinginner .lead {
+  color: rgba(255, 255, 255, 0.9);
+  margin: var(--space-3) auto var(--space-6);
+  max-width: 48ch;
+}
+.home__closingcta {
+  display: flex;
+  gap: var(--space-3);
+  justify-content: center;
+  flex-wrap: wrap;
+}
+/* Botón secundario sobre fondo terracota: borde claro */
+.home__closingcta .btn--secondary {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.7);
+}
+.home__closingcta .btn--secondary:hover {
+  background: #fff;
+  color: var(--accent-hover);
+}
+
+/* ---- Responsive ---- */
+@media (max-width: 900px) {
+  .props {
+    grid-template-columns: 1fr 1fr;
+  }
+  .usos {
+    grid-template-columns: 1fr 1fr;
+    grid-auto-rows: 150px;
+  }
+  .home__calc,
+  .home__historia {
+    grid-template-columns: 1fr;
+    gap: var(--space-5);
+  }
+}
+@media (max-width: 520px) {
+  .props {
+    grid-template-columns: 1fr;
+  }
+  .usos {
+    grid-template-columns: 1fr;
+    grid-auto-rows: 140px;
+  }
+  /* En una sola columna el bento se aplana: todas las celdas miden igual. */
+  .uso--feature,
+  .uso--wide {
+    grid-column: auto;
+    grid-row: auto;
+  }
+  .uso--feature .uso__label {
+    font-size: var(--text-lg);
+  }
+}

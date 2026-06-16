@@ -1,0 +1,118 @@
+/*
+ * tokens.css — Sistema de diseño (design tokens) de Laja Tepexi.
+ * Propósito: definir como variables CSS la paleta tierra (piedra/arena/terracota),
+ * tipografías, escala de espaciado, radios, sombras y transiciones. Es la única
+ * fuente de verdad del look "editorial premium tierra"; el resto del CSS consume
+ * estas variables y nunca valores crudos.
+ */
+
+:root {
+  /* ---- Paleta tierra ---------------------------------------------------- */
+  /* Arenas y cremas (fondos cálidos) */
+  --c-arena-50: #faf6f0;
+  --c-arena-100: #f3ece1;
+  --c-arena-200: #e8dccb;
+  --c-arena-300: #d8c6ad;
+
+  /* Piedra (grises cálidos / texto) */
+  --c-piedra-400: #9a8f80;
+  --c-piedra-600: #6b6357;
+  --c-piedra-800: #3d382f;
+  --c-piedra-900: #2a2620;
+
+  /* Terracota (acento de marca) */
+  --c-terracota-400: #d07a52;
+  --c-terracota-500: #b75c38;
+  --c-terracota-600: #9c4a2b;
+
+  /* Verde mixteca (acento secundario, guiño a las lajas verdes) */
+  --c-verde-600: #5a6b4f;
+
+  /* ---- Roles semánticos ------------------------------------------------- */
+  --bg: var(--c-arena-50);
+  --bg-soft: var(--c-arena-100);
+  --bg-card: #ffffff;
+  --surface-line: var(--c-arena-200);
+
+  --ink: var(--c-piedra-900);
+  --ink-soft: var(--c-piedra-600);
+  --ink-muted: var(--c-piedra-400);
+  --ink-invert: var(--c-arena-50);
+
+  --accent: var(--c-terracota-500);
+  --accent-hover: var(--c-terracota-600);
+  --accent-soft: var(--c-terracota-400);
+  --accent-ink: #ffffff;
+
+  /* ---- Tipografía ------------------------------------------------------- */
+  --font-display: 'Fraunces', Georgia, 'Times New Roman', serif;
+  --font-sans: 'Manrope', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  /* Escala modular ~1.25 */
+  --text-xs: 0.8rem;
+  --text-sm: 0.92rem;
+  --text-base: 1.0625rem; /* 17px — cuerpo premium (ref. Apple 17 / monopo ≥18) */
+  --text-lg: 1.22rem;
+  --text-xl: 1.55rem;
+  --text-2xl: 2.05rem;
+  --text-3xl: 2.85rem;
+  --text-4xl: 3.7rem;
+  --text-5xl: 4.9rem;
+
+  --leading-tight: 1.04; /* display monumental, casi compacto */
+  --leading-snug: 1.3;
+  --leading-normal: 1.55;
+
+  /* Tracking: letter-spacing negativo escalado al tamaño (ref. Apple).
+     Cuanto más grande el display, más se aprieta = "cincelado, no suelto". */
+  --tracking-display: -0.022em;
+  --tracking-heading: -0.014em;
+  --tracking-tight: -0.008em;
+  --tracking-wide: 0.14em; /* antetítulos / labels en mayúsculas */
+
+  /* ---- Espaciado (base 8) ---------------------------------------------- */
+  --space-1: 0.25rem;
+  --space-2: 0.5rem;
+  --space-3: 0.75rem;
+  --space-4: 1rem;
+  --space-5: 1.5rem;
+  --space-6: 2rem;
+  --space-7: 3rem;
+  --space-8: 4rem;
+  --space-9: 6rem;
+  --space-10: 8rem;
+
+  /* ---- Íconos como máscara CSS -----------------------------------------
+     Palomita SVG reutilizable para viñetas (::before). Se pinta con
+     background-color + mask, así hereda el color de marca y mantiene un trazo
+     consistente con el set de Icons.jsx (sin depender de glifos de fuente). */
+  --icon-check: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23000' stroke-width='2.4' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5 10 17.5 19 7'/%3E%3C/svg%3E");
+
+  /* ---- Radios ----------------------------------------------------------- */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 20px;
+  --radius-pill: 999px;
+
+  /* ---- Sombras (cálidas, contenidas) -----------------------------------
+     Filosofía editorial (ref. Apple/monopo/Mercury): la profundidad nace del
+     contraste tonal y los bordes, no de sombras pesadas. Se reservan sutiles y
+     solo para elementos que "flotan" de verdad (nav, FAB, popovers). */
+  --shadow-sm: 0 1px 2px rgba(61, 56, 47, 0.05);
+  --shadow-md: 0 8px 24px rgba(61, 56, 47, 0.07);
+  --shadow-lg: 0 20px 56px rgba(61, 56, 47, 0.1);
+
+  /* ---- Layout ----------------------------------------------------------- */
+  --container: 1180px;
+  --container-narrow: 760px;
+  --nav-height: 72px;
+
+  /* ---- Transiciones -----------------------------------------------------
+     Personalidad "expresiva pero con gravedad" (ref. Apple): feedback de hover
+     casi instantáneo, reveals con peso. */
+  --ease: cubic-bezier(0.4, 0, 0.2, 1);
+  --t-fast: 120ms var(--ease);
+  --t-base: 240ms var(--ease);
+  --t-reveal: 360ms var(--ease);
+  --t-slow: 480ms var(--ease);
+}

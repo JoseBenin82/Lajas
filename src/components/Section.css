@@ -1,0 +1,20 @@
+/*
+ * Section.css — Estilos del encabezado de sección reutilizable.
+ */
+
+.sectionhead {
+  display: flex;
+  flex-direction: column;
+  margin-bottom: var(--space-6);
+}
+.sectionhead--center {
+  align-items: center;
+  text-align: center;
+}
+.sectionhead__sub {
+  margin-top: var(--space-3);
+  max-width: 56ch;
+}
+.sectionhead--center .sectionhead__sub {
+  margin-inline: auto;
+}

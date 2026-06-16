@@ -1,0 +1,112 @@
+/*
+ * Formularios.css — Estilos compartidos por las páginas con formulario
+ * (Cotización y Contacto): layout intro + tarjeta, perks, confirmación.
+ */
+
+.formpage {
+  padding-bottom: var(--space-9);
+}
+
+.form__layout {
+  display: grid;
+  grid-template-columns: 1fr 1.1fr;
+  gap: var(--space-7);
+  align-items: start;
+}
+
+.form__intro {
+  position: sticky;
+  top: calc(var(--nav-height) + var(--space-5));
+}
+.form__intro .lead {
+  margin-top: var(--space-3);
+}
+.form__perks {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  margin-top: var(--space-5);
+}
+.form__perks li {
+  position: relative;
+  padding-left: var(--space-5);
+  color: var(--ink-soft);
+}
+.form__perks li::before {
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0.42em;
+  width: 1.05em;
+  height: 1.05em;
+  background-color: var(--accent);
+  -webkit-mask: var(--icon-check) center / contain no-repeat;
+  mask: var(--icon-check) center / contain no-repeat;
+}
+.form__alt {
+  margin-top: var(--space-5);
+  font-size: var(--text-sm);
+  color: var(--ink-muted);
+}
+.form__alt a {
+  color: var(--accent);
+  font-weight: 600;
+}
+.form__alt a:hover {
+  text-decoration: underline;
+}
+
+/* Tarjeta del formulario */
+.form__card {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-4);
+  padding: var(--space-6);
+  background: var(--bg-card);
+  border: 1px solid var(--surface-line);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-sm);
+}
+.form__grid2 {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+.form__hint {
+  font-size: var(--text-xs);
+  color: var(--ink-muted);
+}
+.form__actions {
+  display: flex;
+  gap: var(--space-3);
+  flex-wrap: wrap;
+}
+.form__actions--center {
+  justify-content: center;
+}
+
+/* Confirmación de envío */
+.form__check {
+  width: 60px;
+  height: 60px;
+  margin: 0 auto var(--space-4);
+  display: grid;
+  place-items: center;
+  color: #fff;
+  background: var(--c-verde-600);
+  border-radius: var(--radius-pill);
+  box-shadow: var(--shadow-md);
+}
+
+@media (max-width: 860px) {
+  .form__layout {
+    grid-template-columns: 1fr;
+    gap: var(--space-6);
+  }
+  .form__intro {
+    position: static;
+  }
+  .form__grid2 {
+    grid-template-columns: 1fr;
+  }
+}
