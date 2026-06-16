@@ -3,7 +3,7 @@
  * Propósito: ficha completa del producto: muestra visual, specs (formato,
  * espesor, acabado, usos), precio por m², calculadora de metraje y los dos CTAs
  * del modelo híbrido: "Agregar al carrito" (pago online) y "Cotizar
- * flete/volumen" (pedidos grandes). Incluye aviso de variación natural de tonos
+ * por volumen" (pedidos grandes). Incluye aviso de variación natural de tonos
  * y lajas relacionadas.
  */
 
@@ -163,10 +163,6 @@ export default function Producto() {
             {/* Specs informativos */}
             <dl className="producto__specsheet">
               <div>
-                <dt>Espesores</dt>
-                <dd>{product.thicknesses.join(' · ')}</dd>
-              </div>
-              <div>
                 <dt>Usos recomendados</dt>
                 <dd>{product.uses.join(' · ')}</dd>
               </div>
@@ -195,7 +191,7 @@ export default function Producto() {
                 )}
               </Button>
               <Button size="lg" variant="secondary" full to={cotizarUrl}>
-                Cotizar flete/volumen
+                Cotizar por volumen
               </Button>
             </div>
             {!puedeAgregar && (

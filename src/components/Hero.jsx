@@ -22,7 +22,7 @@ export default function Hero() {
         <div className="hero__text">
           <span className="eyebrow">Laja natural · Tepexi de Rodríguez, Puebla</span>
           <h1 className="hero__title">
-            Piedra real que le da <em>carácter</em> a tu construcción.
+            Belleza real que le da <em>carácter</em> a tu construcción.
           </h1>
           <p className="hero__lead lead">
             Laja extraída en la Mixteca poblana para fachadas, pisos y muros.
@@ -33,7 +33,7 @@ export default function Hero() {
               Ver catálogo
             </Button>
             <Button to="/cotizacion" size="lg" variant="secondary">
-              Cotizar flete/volumen
+              Cotizar por volumen
             </Button>
           </div>
           <ul className="hero__stats">

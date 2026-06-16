@@ -143,8 +143,7 @@ export default function M2Calculator({ pricePerM2, onChange }) {
       </dl>
 
       <p className="m2calc__note">
-        Estimado solo de material. El flete se cotiza por separado según tu
-        ubicación.
+        Estimado solo de material.
       </p>
     </div>
   );

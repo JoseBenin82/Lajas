@@ -15,7 +15,7 @@ import M2Calculator from '../components/M2Calculator.jsx';
 import Testimonials from '../components/Testimonials.jsx';
 import FAQ from '../components/FAQ.jsx';
 import Button from '../components/Button.jsx';
-import { FEATURED, PRODUCTS, USOS } from '../data/products.js';
+import { FEATURED, PRODUCTS } from '../data/products.js';
 import { useDocumentTitle } from '../lib/useDocumentTitle.js';
 import './Home.css';
 
@@ -38,20 +38,36 @@ const PROPS = [
   },
   {
     t: 'Despacho nacional',
-    d: 'Enviamos a toda la república. El flete se cotiza según tu ubicación.',
+    d: 'Enviamos a toda la república desde Tepexi de Rodríguez, Puebla.',
     icon: 'M3 7h11v8H3zM14 10h4l3 3v2h-7zM7 19a2 2 0 104 0M16 19a2 2 0 104 0',
   },
 ];
 
-/** Una laja representativa por uso, para la galería de usos. */
-function lajaPorUso(uso) {
-  return PRODUCTS.find((p) => p.uses.includes(uso));
+/**
+ * Galería de inspiración: mapeo CURADO uso → laja, no automático.
+ * Cada celda muestra una laja realmente destinada a ese uso (coherencia con la
+ * etiqueta) y se priorizan las fotos que son tomas de contexto/instalación
+ * (galarza en fachada, oro viejo en muro, canela en piso…). El orden coloca la
+ * toma más potente como pieza grande del mosaico (índice 0 = feature).
+ */
+const INSPIRACION = [
+  { uso: 'Fachadas', lajaId: 'galarza' },
+  { uso: 'Muros decorativos', lajaId: 'oro-viejo' },
+  { uso: 'Chimeneas', lajaId: 'roja-tlayua' },
+  { uso: 'Pisos', lajaId: 'canela' },
+  { uso: 'Terrazas', lajaId: 'verde-pistache' },
+  { uso: 'Andadores', lajaId: 'pizarra-negra' },
+];
+
+/** Busca una laja por su id (para el mapeo curado de inspiración). */
+function lajaPorId(id) {
+  return PRODUCTS.find((p) => p.id === id);
 }
 
 export default function Home() {
   useDocumentTitle(
     'Laja natural de Tepexi de Rodríguez, Puebla',
-    'Laja natural de Tepexi de Rodríguez para fachadas, pisos y muros. Venta por m², calculadora de cobertura y cotización de flete. Despacho nacional.'
+    'Laja natural de Tepexi de Rodríguez para fachadas, pisos y muros. Venta por m², calculadora de cobertura y despacho nacional.'
   );
 
   return (
@@ -110,11 +126,11 @@ export default function Home() {
         variant="soft"
         eyebrow="Inspiración"
         title="Para cada rincón de tu proyecto"
-        subtitle="De fachadas a albercas: la laja natural se adapta a interiores y exteriores."
+        subtitle="De fachadas a andadores: la laja natural se adapta a interiores y exteriores."
       >
         <div className="usos">
-          {USOS.map((uso, i) => {
-            const laja = lajaPorUso(uso);
+          {INSPIRACION.map(({ uso, lajaId }, i) => {
+            const laja = lajaPorId(lajaId);
             // Mosaico bento: el primero manda como pieza grande (2×2) y otro
             // rompe el ritmo a lo ancho; el resto son celdas simples.
             const modifier =
@@ -219,14 +235,14 @@ export default function Home() {
         <div className="container home__closinginner">
           <h2>¿Empezamos tu proyecto?</h2>
           <p className="lead">
-            Elige tu laja y paga en línea, o cotiza el flete para pedidos grandes.
+            Elige tu laja y paga en línea, o pide una cotización por volumen para pedidos grandes.
           </p>
           <div className="home__closingcta">
             <Button to="/catalogo" size="lg">
               Ver catálogo
             </Button>
             <Button to="/cotizacion" size="lg" variant="secondary">
-              Cotizar flete/volumen
+              Cotizar por volumen
             </Button>
           </div>
         </div>

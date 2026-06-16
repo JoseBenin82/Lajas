@@ -24,18 +24,18 @@ const PROCESO = [
   },
   {
     t: 'Corte y formato',
-    d: 'Se preparan los formatos: cintilla de 5 y 10 cm o pieza irregular, en los espesores que pide cada proyecto.',
+    d: 'Se preparan los formatos: 5 o 10 cm de ancho por largo libre, o pieza irregular, en los espesores que pide cada proyecto.',
   },
   {
     t: 'Despacho',
-    d: 'Se embala y se despacha a obra. El flete se cotiza según la distancia desde Tepexi y el volumen del pedido.',
+    d: 'Se embala y se despacha a obra desde Tepexi, a toda la república.',
   },
 ];
 
 /** Valores de la marca. */
 const VALORES = [
   { t: 'Origen real', d: 'Piedra de Tepexi, directo de cantera. Sin reventa ni etiquetas prestadas.' },
-  { t: 'Precio honesto', d: 'Cobramos por m² de material; el flete se cotiza claro y por separado.' },
+  { t: 'Precio honesto', d: 'Cobramos por m² de material, claro y sin sorpresas.' },
   { t: 'Asesoría', d: 'Te ayudamos a calcular metros y merma para que compres lo justo.' },
   { t: 'Respeto al material', d: 'Aceptamos la variación natural de tonos: cada lote es único.' },
 ];

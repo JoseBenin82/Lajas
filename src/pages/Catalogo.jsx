@@ -101,8 +101,8 @@ export default function Catalogo() {
           <span className="eyebrow">Catálogo</span>
           <h1>Lajas naturales de Tepexi</h1>
           <p className="lead" style={{ maxWidth: '56ch', marginTop: '0.75rem' }}>
-            Trece tonos reales extraídos en la Mixteca poblana. Todas se venden
-            por m²; el flete se cotiza según tu ubicación.
+            Diez tonos reales extraídos en la Mixteca poblana. Todas se venden
+            por m², con despacho a todo México.
           </p>
         </div>
       </header>

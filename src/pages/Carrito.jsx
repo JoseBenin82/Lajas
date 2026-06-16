@@ -1,8 +1,8 @@
 /*
  * Carrito.jsx — Carrito de compra.
  * Propósito: mostrar las líneas (cada una en m²), permitir ajustar la cantidad
- * de metros o eliminar, y resumir el subtotal de material. Comunica que el
- * flete se cotiza aparte y conduce al checkout. Estado vía CartContext.
+ * de metros o eliminar, y resumir el subtotal de material. Conduce al
+ * checkout. Estado vía CartContext.
  */
 
 import { Link } from 'react-router-dom';
@@ -110,14 +110,6 @@ export default function Carrito() {
               <span>Subtotal material</span>
               <strong>{formatMXN(subtotal)}</strong>
             </div>
-            <div className="carrito__sumrow carrito__sumrow--muted">
-              <span>Flete</span>
-              <span>Se cotiza por separado</span>
-            </div>
-            <p className="carrito__flete">
-              El costo de envío depende de tu ubicación y volumen. Lo confirmamos
-              antes de cerrar tu pedido.
-            </p>
             <Button to="/checkout" size="lg" full>
               Continuar a pago
             </Button>

@@ -1,7 +1,7 @@
 /*
  * faqs.js — Preguntas frecuentes (mock).
  * Propósito: contenido para la sección FAQ de la home/contacto, centrado en las
- * dudas reales al comprar laja: medición, merma, flete, instalación y pago.
+ * dudas reales al comprar laja: medición, merma, envío, instalación y pago.
  * TODO (cliente): validar políticas reales (devoluciones, tiempos, garantía).
  */
 
@@ -19,7 +19,7 @@ export const FAQS = [
   {
     id: 'f3',
     q: '¿El precio incluye el envío?',
-    a: 'No. El precio mostrado es solo del material por m². El flete depende de la distancia a la cantera y del volumen; por eso lo cotizamos aparte. Usa "Cotizar flete/volumen" y te damos el costo de envío a tu ubicación.',
+    a: 'No. El precio mostrado es solo del material por m². El costo de envío depende del volumen y del destino; por eso lo cotizamos aparte. Usa "Cotizar por volumen" y te damos el costo de entrega a tu ubicación.',
   },
   {
     id: 'f4',
@@ -34,6 +34,6 @@ export const FAQS = [
   {
     id: 'f6',
     q: '¿Hacen envíos a todo México?',
-    a: 'Sí, despachamos a nivel nacional desde Tepexi de Rodríguez, Puebla. El tiempo y costo de entrega se confirman al cotizar el flete.',
+    a: 'Sí, despachamos a nivel nacional desde Tepexi de Rodríguez, Puebla. El tiempo y costo de entrega se confirman al cotizar tu pedido.',
   },
 ];

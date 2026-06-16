@@ -29,7 +29,7 @@ export default function Footer() {
         <nav className="footer__col" aria-label="Explorar">
           <h4>Explorar</h4>
           <Link to="/catalogo">Catálogo</Link>
-          <Link to="/cotizacion">Cotizar flete/volumen</Link>
+          <Link to="/cotizacion">Cotizar por volumen</Link>
           <Link to="/nosotros">Nosotros</Link>
           <Link to="/contacto">Contacto</Link>
         </nav>

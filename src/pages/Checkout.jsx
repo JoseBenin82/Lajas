@@ -175,8 +175,8 @@ export default function Checkout() {
                 </label>
               </div>
               <p className="checkout__fletehint">
-                El flete se calcula y confirma con base en esta dirección antes
-                del despacho.
+                Confirmamos la entrega con base en esta dirección antes del
+                despacho.
               </p>
             </fieldset>
 
@@ -245,11 +245,6 @@ export default function Checkout() {
               <span>Subtotal material</span>
               <strong>{formatMXN(subtotal)}</strong>
             </div>
-            <div className="checkout__sumrow checkout__sumrow--muted">
-              <span>Flete</span>
-              <span>Se cotiza por separado</span>
-            </div>
-
             <Button type="submit" size="lg" full disabled={procesando}>
               {procesando ? 'Procesando…' : `Pagar (prueba) ${formatMXN(subtotal)}`}
             </Button>

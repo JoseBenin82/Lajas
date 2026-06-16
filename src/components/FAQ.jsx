@@ -1,6 +1,6 @@
 /*
  * FAQ.jsx — Acordeón de preguntas frecuentes.
- * Propósito: resolver dudas clave de compra (merma, flete, tonos, MSI) en un
+ * Propósito: resolver dudas clave de compra (merma, envío, tonos, MSI) en un
  * acordeón accesible basado en <details>/<summary>. Datos desde data/faqs.js.
  */
 

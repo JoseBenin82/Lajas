@@ -1,6 +1,6 @@
 /*
- * Cotizacion.jsx — Solicitud de cotización de flete/volumen.
- * Propósito: capturar pedidos grandes donde el flete define el precio. Formulario
+ * Cotizacion.jsx — Solicitud de cotización por volumen.
+ * Propósito: capturar pedidos grandes de proyecto/obra. Formulario
  * (nombre, contacto, proyecto, m², ubicación/CP, mensaje) con envío simulado y
  * CTA de WhatsApp con el resumen prellenado. Acepta ?producto= y ?m2= para
  * precargar desde la ficha de producto.
@@ -17,8 +17,8 @@ import './Formularios.css';
 
 export default function Cotizacion() {
   useDocumentTitle(
-    'Cotizar flete y volumen',
-    'Cotiza el flete de tu pedido de laja según ubicación y volumen. Ideal para proyectos grandes con envío a obra.'
+    'Cotizar por volumen',
+    'Cotiza tu pedido de laja por volumen. Ideal para proyectos grandes con despacho a obra.'
   );
 
   const [searchParams] = useSearchParams();
@@ -68,7 +68,7 @@ export default function Cotizacion() {
 
   // Mensaje de WhatsApp con el resumen de la cotización.
   const mensajeWa = [
-    'Hola, quiero cotizar flete/volumen de laja.',
+    'Hola, quiero una cotización por volumen de laja.',
     form.producto && `Producto: ${form.producto}`,
     form.m2 && `Metros: ${form.m2} m²`,
     form.ciudad && `Destino: ${form.ciudad}${form.cp ? ` (CP ${form.cp})` : ''}`,
@@ -90,7 +90,7 @@ export default function Cotizacion() {
           <span className="eyebrow">Cotización enviada</span>
           <h1>Recibimos tu solicitud</h1>
           <p className="lead" style={{ margin: '1rem auto 2rem', maxWidth: '46ch' }}>
-            Un asesor revisará tu proyecto y te enviará el costo de flete. Para
+            Un asesor revisará tu proyecto y te enviará tu cotización. Para
             agilizarlo, también puedes escribirnos por WhatsApp con tu resumen ya
             listo.
           </p>
@@ -115,15 +115,15 @@ export default function Cotizacion() {
       <div className="container form__layout">
         <div className="form__intro">
           <span className="eyebrow">Cotización</span>
-          <h1>Cotiza flete y volumen</h1>
+          <h1>Cotiza por volumen</h1>
           <p className="lead">
-            ¿Pedido grande o envío a obra? Cuéntanos qué necesitas y a dónde va.
-            Calculamos el flete según la distancia a la cantera y el volumen, y te
-            damos el precio total.
+            ¿Pedido grande o proyecto a obra? Cuéntanos qué necesitas y a dónde va.
+            Preparamos una cotización por volumen con el mejor precio para tu
+            proyecto.
           </p>
           <ul className="form__perks">
             <li>Ideal para proyectos desde 20 m².</li>
-            <li>Precio de material + flete cerrado.</li>
+            <li>Precio por volumen cerrado.</li>
             <li>Respuesta de un asesor real.</li>
           </ul>
           <p className="form__alt">

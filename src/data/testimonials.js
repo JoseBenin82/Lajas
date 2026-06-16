@@ -17,7 +17,7 @@ export const TESTIMONIALS = [
   {
     id: 't2',
     quote:
-      'Pedí Verde Jade para la alberca. El color con el agua es otra cosa. El flete llegó bien embalado hasta Querétaro.',
+      'Pedí Galarza para la alberca. El color con el agua es otra cosa. El pedido llegó bien embalado hasta Querétaro.',
     author: 'Arq. Rodrigo Lima',
     role: 'Proyecto residencial · Querétaro',
     rating: 5,

@@ -2,7 +2,7 @@
  * Confirmacion.jsx — Confirmación de pedido (orden simulada).
  * Propósito: cerrar el flujo de compra mostrando el número de orden generado,
  * el resumen de lo comprado y los siguientes pasos (te contactamos para cerrar
- * el flete). Lee la orden persistida por el checkout; si no hay, ofrece volver.
+ * la entrega). Lee la orden persistida por el checkout; si no hay, ofrece volver.
  */
 
 import { useEffect, useState } from 'react';
@@ -45,7 +45,7 @@ export default function Confirmacion() {
     );
   }
 
-  const mensajeWa = `Hola, acabo de hacer el pedido ${order.orderId} en la web y quiero coordinar el flete.`;
+  const mensajeWa = `Hola, acabo de hacer el pedido ${order.orderId} en la web y quiero coordinar la entrega.`;
 
   return (
     <section
@@ -76,11 +76,6 @@ export default function Confirmacion() {
             <span>Subtotal material</span>
             <strong>{formatMXN(order.subtotal)}</strong>
           </div>
-          <div className="confirm__row confirm__row--muted">
-            <span>Flete</span>
-            <span>Pendiente de cotizar</span>
-          </div>
-
           <ul className="confirm__items">
             {order.items?.map((it) => (
               <li key={it.lineId}>
@@ -98,12 +93,12 @@ export default function Confirmacion() {
           <ol className="confirm__steps">
             <li>
               <strong>Te contactamos.</strong> Un asesor confirma disponibilidad
-              del lote y calcula el flete a {order.customer?.ciudad},{' '}
+              del lote y la entrega a {order.customer?.ciudad},{' '}
               {order.customer?.estado}.
             </li>
             <li>
-              <strong>Cierras el envío.</strong> Acordamos costo de flete y fecha
-              de despacho desde Tepexi.
+              <strong>Cierras el envío.</strong> Acordamos la fecha de despacho
+              desde Tepexi.
             </li>
             <li>
               <strong>Recibes tu laja.</strong> Embalada y lista para instalar.
@@ -113,7 +108,7 @@ export default function Confirmacion() {
 
         <div className="confirm__cta">
           <Button href={BUSINESS.whatsappLink(mensajeWa)} size="lg">
-            Coordinar flete por WhatsApp
+            Coordinar entrega por WhatsApp
           </Button>
           <Button to="/catalogo" variant="secondary" size="lg">
             Seguir comprando
