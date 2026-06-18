@@ -7,7 +7,7 @@
  */
 
 import { useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 
 import Button from '../components/Button.jsx';
 import { IconCheck } from '../components/Icons.jsx';
@@ -128,7 +128,7 @@ export default function Cotizacion() {
           </ul>
           <p className="form__alt">
             ¿Prefieres comprar directo? Revisa el{' '}
-            <a href="/catalogo">catálogo</a> y paga en línea.
+            <Link to="/catalogo">catálogo</Link> y paga en línea.
           </p>
         </div>
 
