@@ -187,11 +187,19 @@
   transform: translateY(-7px) rotate(-45deg);
 }
 
+/* Pie del menú (CTA + contacto): solo se muestra dentro del panel móvil. */
+.nav__menu-footer {
+  display: none;
+}
+
 /* ---- Responsive --------------------------------------------------------- */
 @media (max-width: 860px) {
   .nav__toggle {
     display: flex;
   }
+
+  /* Panel deslizante a pantalla completa. Columna: enlaces arriba, pie abajo
+     (CTA + WhatsApp) empujado con margin-top:auto para llenar el espacio. */
   .nav__menu {
     position: fixed;
     inset: var(--nav-height) 0 0 0;
@@ -201,32 +209,128 @@
     justify-content: flex-start;
     align-items: stretch;
     gap: 0;
-    padding: var(--space-3) var(--space-5) var(--space-6);
+    padding: var(--space-4) var(--space-5)
+      calc(var(--space-6) + env(safe-area-inset-bottom, 0px));
     margin: 0;
     background: var(--bg);
     overflow-y: auto;
+    overscroll-behavior: contain;
     /* Oculto fuera de pantalla a la derecha; entra al abrir. */
     transform: translateX(100%);
     transition: transform var(--t-base);
+    box-shadow: -24px 0 64px rgba(20, 19, 17, 0.16);
   }
   .nav__menu.is-open {
     transform: translateX(0);
   }
+
+  /* Enlaces grandes tipo display, buen blanco y separadores finos. */
   .nav__link {
-    display: block;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
     width: 100%;
-    font-family: var(--font-sans);
-    font-size: var(--text-lg);
-    font-weight: 500;
+    font-family: var(--font-display);
+    font-size: var(--text-xl);
+    font-weight: 600;
     color: var(--ink);
-    padding-block: var(--space-3);
+    padding-block: var(--space-4);
     border-bottom: 1px solid var(--surface-line);
+  }
+  /* Chevron de afordancia a la derecha de cada enlace. */
+  .nav__link::after {
+    content: '';
+    flex: none;
+    width: 8px;
+    height: 8px;
+    border-right: 2px solid var(--ink-muted);
+    border-bottom: 2px solid var(--ink-muted);
+    transform: rotate(-45deg);
+    transition: transform var(--t-fast), border-color var(--t-fast);
+    /* Anula los valores del subrayado de escritorio. */
+    position: static;
+    background: none;
+    border-radius: 0;
+    left: auto;
+    bottom: auto;
   }
   .nav__link.is-active {
     color: var(--accent);
   }
-  /* La línea de activo (::after) no aplica en la lista móvil. */
+  /* El enlace activo conserva el chevron (no la barra-subrayado de escritorio):
+     hay que anular por completo las props absolutas de aquella regla, que es
+     más específica, o el rotate la convierte en una diagonal cruzando el menú. */
   .nav__link.is-active::after {
-    display: none;
+    position: static;
+    width: 8px;
+    height: 8px;
+    background: none;
+    border-radius: 0;
+    border-right: 2px solid var(--accent);
+    border-bottom: 2px solid var(--accent);
+    left: auto;
+    bottom: auto;
+    transform: rotate(-45deg);
+  }
+
+  /* Pie del menú visible y anclado al fondo del panel. */
+  .nav__menu-footer {
+    display: flex;
+    flex-direction: column;
+    gap: var(--space-4);
+    margin-top: auto;
+    padding-top: var(--space-6);
+  }
+  .nav__menu-contact {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: var(--space-2);
+    font-size: var(--text-sm);
+    font-weight: 600;
+    color: var(--ink-soft);
+  }
+  .nav__menu-contact svg {
+    color: #25d366; /* verde WhatsApp para reconocimiento inmediato */
+  }
+  .nav__menu-contact:hover {
+    color: var(--ink);
+  }
+
+  /* Entrada escalonada de los elementos al abrir el menú. */
+  @keyframes menuItemIn {
+    from {
+      opacity: 0;
+      transform: translateY(12px);
+    }
+    to {
+      opacity: 1;
+      transform: none;
+    }
+  }
+  .nav__menu.is-open .nav__link,
+  .nav__menu.is-open .nav__menu-footer {
+    animation: menuItemIn 0.42s var(--ease-out) backwards;
+  }
+  .nav__menu.is-open .nav__link:nth-child(1) {
+    animation-delay: 0.08s;
+  }
+  .nav__menu.is-open .nav__link:nth-child(2) {
+    animation-delay: 0.14s;
+  }
+  .nav__menu.is-open .nav__link:nth-child(3) {
+    animation-delay: 0.2s;
+  }
+  .nav__menu.is-open .nav__link:nth-child(4) {
+    animation-delay: 0.26s;
+  }
+  .nav__menu.is-open .nav__menu-footer {
+    animation-delay: 0.32s;
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .nav__menu.is-open .nav__link,
+    .nav__menu.is-open .nav__menu-footer {
+      animation: none;
+    }
   }
 }
