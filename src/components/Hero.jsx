@@ -6,6 +6,7 @@
  * TODO (cliente): sustituir el collage por fotografía profesional de cantera.
  */
 
+import { useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import Button from './Button.jsx';
 import StoneSwatch from './StoneSwatch.jsx';
@@ -15,9 +16,47 @@ import './Hero.css';
 export default function Hero() {
   // Toma hasta 4 lajas destacadas para el collage.
   const muestras = FEATURED.slice(0, 4);
+  // BASE_URL = '/Lajas/' en GitHub Pages, '/' en local. Necesario para que el
+  // video y el poster resuelvan bajo la subruta del despliegue.
+  const base = import.meta.env.BASE_URL;
+
+  // El autoplay de fondo exige que el video esté REALMENTE muteado a nivel de
+  // propiedad (React no siempre refleja el atributo `muted`). Lo forzamos por
+  // ref y disparamos play(); si el navegador lo bloquea, queda el poster.
+  const videoRef = useRef(null);
+  useEffect(() => {
+    const v = videoRef.current;
+    if (!v) return;
+    // Con movimiento reducido: dejar el video pausado (se ve el póster estático).
+    if (window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+      v.pause();
+      return;
+    }
+    v.muted = true;
+    const p = v.play();
+    if (p && typeof p.catch === 'function') p.catch(() => {});
+  }, []);
 
   return (
     <section className="hero">
+      {/* Video de fondo (cantera). muted+playsInline+autoplay = autoreproduce
+          en todos los navegadores; loop lo repite. Poster mientras carga. */}
+      <video
+        ref={videoRef}
+        className="hero__video"
+        autoPlay
+        muted
+        loop
+        playsInline
+        preload="auto"
+        poster={`${base}lajas/galarza.jpg`}
+        aria-hidden="true"
+        tabIndex={-1}
+      >
+        <source src={`${base}videos/cantera.mp4`} type="video/mp4" />
+      </video>
+      <div className="hero__overlay" aria-hidden="true" />
+
       <div className="container hero__inner">
         <div className="hero__text">
           <span className="eyebrow">Laja natural · Tepexi de Rodríguez, Puebla</span>

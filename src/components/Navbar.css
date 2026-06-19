@@ -14,13 +14,53 @@
   transition: background-color var(--t-base), box-shadow var(--t-base),
     border-color var(--t-base);
   border-bottom: 1px solid transparent;
+  /* Entrada al cargar (slideInDown). `backwards` evita dejar un transform
+     permanente en .nav (rompería el posicionamiento fixed del menú móvil). */
+  animation: navDown 0.6s var(--ease-out) backwards;
+}
+@keyframes navDown {
+  from {
+    transform: translateY(-100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .nav {
+    animation: none;
+  }
 }
 
 .nav--solid {
-  background-color: rgba(250, 246, 240, 0.72);
+  background-color: rgba(255, 255, 255, 0.8);
   backdrop-filter: saturate(160%) blur(14px);
   border-bottom-color: var(--surface-line);
   box-shadow: var(--shadow-sm);
+}
+
+/* ---- Navbar en claro sobre el hero (solo en el tope del home) ------------
+   Sobre el video oscuro el texto en grafito era ilegible. En este estado lo
+   pasamos a blanco con una leve sombra para que la marca y los enlaces se lean
+   sin necesidad de fondo sólido. */
+.nav--over-hero .nav__brand,
+.nav--over-hero .nav__name strong,
+.nav--over-hero .nav__link,
+.nav--over-hero .nav__cart {
+  color: #fff;
+}
+.nav--over-hero .nav__brand,
+.nav--over-hero .nav__link {
+  text-shadow: 0 1px 10px rgba(20, 19, 17, 0.45);
+}
+.nav--over-hero .nav__link:hover {
+  color: #fff;
+  opacity: 0.85;
+}
+.nav--over-hero .nav__toggle span {
+  background: #fff;
 }
 
 .nav__inner {

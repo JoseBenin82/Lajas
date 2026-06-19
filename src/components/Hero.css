@@ -6,30 +6,160 @@
 
 .hero {
   position: relative;
-  padding-top: calc(var(--nav-height) + var(--space-7));
+  padding-top: calc(var(--nav-height) + var(--space-8));
   padding-bottom: var(--space-9);
-  background: radial-gradient(
-      ellipse at 85% 0%,
-      var(--c-arena-200),
-      transparent 55%
-    ),
-    linear-gradient(180deg, var(--bg-soft), var(--bg));
+  background: var(--c-piedra-900); /* fallback si el video no carga */
   overflow: hidden;
+  color: var(--ink-invert);
 }
 
+/* ---- Video de fondo + overlay ---- */
+.hero__video {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  z-index: 0;
+  pointer-events: none;
+  /* La cantera es polvosa y de baja saturación (se veía "opaca"). La revivimos
+     con un grado de color sutil: más saturación, algo de contraste y brillo,
+     y un toque cálido (sepia) que la alinea con el acento terracota de marca. */
+  filter: saturate(1.32) contrast(1.07) brightness(1.06) sepia(0.08);
+  /* Zoom muy lento (ken-burns) para que la portada respire en vez de verse
+     estática/apagada. El scale base evita ver bordes durante el movimiento. */
+  transform: scale(1.06);
+  animation: heroZoom 26s var(--ease) infinite alternate;
+}
+@keyframes heroZoom {
+  from {
+    transform: scale(1.06);
+  }
+  to {
+    transform: scale(1.14) translate3d(-1.5%, -1%, 0);
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero__video {
+    animation: none;
+  }
+}
+.hero__overlay {
+  position: absolute;
+  inset: 0;
+  z-index: 0;
+  /* Velado en capas (en vez de un negro plano y pesado, que apagaba el video):
+     1) radial cálido anclado tras el texto para garantizar legibilidad,
+     2) barrido horizontal que se abre a la derecha y deja respirar la cantera,
+     3) baño terracota inferior que enlaza el video con el acento de marca,
+     4) viñeta superior tenue para asentar el navbar. */
+  background: radial-gradient(
+      130% 105% at 16% 32%,
+      rgba(20, 19, 17, 0.8) 0%,
+      rgba(20, 19, 17, 0.42) 46%,
+      rgba(20, 19, 17, 0.12) 100%
+    ),
+    linear-gradient(
+      90deg,
+      rgba(27, 26, 23, 0.74) 0%,
+      rgba(27, 26, 23, 0.34) 52%,
+      rgba(27, 26, 23, 0.08) 100%
+    ),
+    linear-gradient(0deg, rgba(183, 92, 56, 0.16), transparent 42%),
+    linear-gradient(180deg, rgba(20, 19, 17, 0.34), transparent 18%);
+}
+/* Nota: con prefers-reduced-motion NO ocultamos el video (eso dejaba el hero
+   vacío en Windows con animaciones desactivadas). El video queda visible y el
+   JS simplemente no lo reproduce: se muestra el póster estático. */
+
 .hero__inner {
+  position: relative;
+  z-index: 1;
   display: grid;
   grid-template-columns: 1.05fr 0.95fr;
   gap: var(--space-7);
   align-items: center;
 }
 
+/* Texto en claro sobre el video. La sombra sutil despega la tipografía del
+   fondo (antes "se hundía" en la cantera) y le da nitidez sin endurecerla. */
+.hero__title,
+.hero__lead {
+  color: #fff;
+}
+.hero__title {
+  text-shadow: 0 1px 2px rgba(20, 19, 17, 0.35),
+    0 8px 30px rgba(20, 19, 17, 0.28);
+}
+.hero__lead {
+  color: rgba(255, 255, 255, 0.92);
+  text-shadow: 0 1px 14px rgba(20, 19, 17, 0.35);
+}
+.hero .eyebrow {
+  /* El antetítulo en terracota se aclara para brillar sobre el video oscuro. */
+  color: var(--c-terracota-400);
+  text-shadow: 0 1px 10px rgba(20, 19, 17, 0.45);
+}
+.hero__stats span {
+  color: rgba(255, 255, 255, 0.74);
+}
+/* Botón secundario legible sobre fondo oscuro */
+.hero .btn--secondary {
+  color: #fff;
+  border-color: rgba(255, 255, 255, 0.7);
+}
+.hero .btn--secondary:hover {
+  background: #fff;
+  color: var(--ink);
+}
+
 .hero__title {
   font-size: clamp(2.7rem, 5.6vw, var(--text-5xl));
-  font-weight: 300; /* whisper-weight: autoridad por contención (ref. monopo) */
+  font-weight: 700; /* sans con presencia (look minimalista) */
   letter-spacing: var(--tracking-display);
-  line-height: 1;
+  line-height: 1.04;
   margin-top: var(--space-3);
+}
+
+/* ---- Entrada al cargar (fade-up escalonado, estilo aindaei) ----
+   Los hijos del bloque de texto y el collage entran con un desplazamiento
+   suave y stagger. `backwards` mantiene el estado inicial durante el delay. */
+@keyframes heroIn {
+  from {
+    opacity: 0;
+    transform: translateY(26px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.hero__text > * {
+  animation: heroIn var(--t-enter) var(--ease-out) backwards;
+}
+.hero__text > *:nth-child(1) {
+  animation-delay: 0.05s;
+}
+.hero__text > *:nth-child(2) {
+  animation-delay: 0.14s;
+}
+.hero__text > *:nth-child(3) {
+  animation-delay: 0.23s;
+}
+.hero__text > *:nth-child(4) {
+  animation-delay: 0.32s;
+}
+.hero__text > *:nth-child(5) {
+  animation-delay: 0.41s;
+}
+.hero__collage {
+  animation: heroIn var(--t-enter) var(--ease-out) 0.28s backwards;
+}
+@media (prefers-reduced-motion: reduce) {
+  .hero__text > *,
+  .hero__collage {
+    animation: none;
+  }
 }
 .hero__title em {
   font-style: italic;
@@ -61,8 +191,11 @@
 .hero__stats strong {
   font-family: var(--font-display);
   font-size: var(--text-2xl);
-  color: var(--ink);
+  /* Iban en grafito (--ink) sobre el video oscuro: quedaban casi invisibles.
+     En claro contrastan y la cifra se lee de un vistazo. */
+  color: #fff;
   line-height: 1;
+  text-shadow: 0 1px 12px rgba(20, 19, 17, 0.4);
 }
 .hero__stats span {
   font-size: var(--text-sm);

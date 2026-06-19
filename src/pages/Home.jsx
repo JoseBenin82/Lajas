@@ -161,7 +161,7 @@ export default function Home() {
       {/* Teaser calculadora */}
       <section className="section">
         <div className="container home__calc">
-          <div className="home__calctext">
+          <div className="home__calctext" data-reveal="left">
             <span className="eyebrow">Calcula sin sorpresas</span>
             <h2>¿Cuánta laja necesito?</h2>
             <p className="lead">
@@ -175,7 +175,7 @@ export default function Home() {
               <li>Te da el estimado de material al instante.</li>
             </ul>
           </div>
-          <div className="home__calcbox">
+          <div className="home__calcbox" data-reveal="right">
             <M2Calculator pricePerM2={200} />
           </div>
         </div>
@@ -184,7 +184,7 @@ export default function Home() {
       {/* Historia de Tepexi */}
       <Section variant="ink">
         <div className="home__historia">
-          <div className="home__historiatext">
+          <div className="home__historiatext" data-reveal="left">
             <span className="eyebrow">Nuestro origen</span>
             <h2>Piedra de la Mixteca poblana</h2>
             <p className="lead">
@@ -197,7 +197,7 @@ export default function Home() {
               Conoce la historia
             </Button>
           </div>
-          <div className="home__historiamedia" aria-hidden="true">
+          <div className="home__historiamedia" aria-hidden="true" data-reveal="right">
             {PRODUCTS.slice(0, 3).map((p) => (
               <StoneSwatch
                 key={p.id}

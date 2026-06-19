@@ -1,7 +1,7 @@
 /*
  * base.css — Reset ligero + estilos globales/tipográficos de Laja Tepexi.
- * Propósito: normalizar el navegador, fijar la tipografía base (Manrope para
- * cuerpo, Fraunces para títulos), y proveer utilidades de layout transversales
+ * Propósito: normalizar el navegador, fijar la tipografía base (Manrope, sans,
+ * para cuerpo y títulos), y proveer utilidades de layout transversales
  * (.container, .section, .eyebrow, focus visible accesible). Consume tokens.css.
  */
 
@@ -31,27 +31,6 @@ body {
   min-height: 100dvh;
 }
 
-/* ---- Textura de grano global -------------------------------------------
-   La paleta tierra pide superficie de papel/piedra, no plano digital. Un velo
-   de ruido SVG fijo (feTurbulence) sobre todo el viewport rompe la planitud sin
-   tocar el contenido. pointer-events:none = nunca intercepta clics; mix-blend
-   multiply lo funde con los fondos cálidos. Muy sutil (opacity ~0.04). */
-body::after {
-  content: '';
-  position: fixed;
-  inset: 0;
-  z-index: 1;
-  pointer-events: none;
-  opacity: 0.04;
-  mix-blend-mode: multiply;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='160' height='160'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-}
-@media (prefers-reduced-motion: reduce) {
-  body::after {
-    opacity: 0.03;
-  }
-}
-
 img,
 picture,
 svg,
@@ -79,17 +58,17 @@ h4 {
   text-wrap: balance;
 }
 
-/* Display monumental: peso ligero (300/400) = "autoridad por contención"
-   (ref. monopo/Mercury). El tracking se aprieta cuanto más grande el texto. */
+/* Display sans minimalista: pesos sólidos (600/700), tracking apretado y
+   line-height compacto = titulares limpios y con presencia. */
 h1 {
-  font-size: clamp(2.5rem, 6vw, var(--text-5xl));
-  font-weight: 400;
+  font-size: clamp(2.4rem, 5.5vw, var(--text-5xl));
+  font-weight: 700;
   letter-spacing: var(--tracking-display);
-  line-height: 1.02;
+  line-height: 1.05;
 }
 h2 {
-  font-size: clamp(1.95rem, 4vw, var(--text-3xl));
-  font-weight: 500;
+  font-size: clamp(1.85rem, 4vw, var(--text-3xl));
+  font-weight: 700;
   letter-spacing: var(--tracking-heading);
 }
 /* Subtítulos de UI: algo más de peso para escaneabilidad. */
@@ -277,10 +256,21 @@ ol {
    nth-child). Quien prefiere menos movimiento lo ve estático e instantáneo. */
 [data-reveal] {
   opacity: 0;
-  transform: translateY(18px);
-  transition: opacity var(--t-slow), transform var(--t-slow);
+  transform: translateY(28px);
+  transition: opacity var(--t-enter) var(--ease-out),
+    transform var(--t-enter) var(--ease-out);
   transition-delay: var(--reveal-delay, 0ms);
   will-change: opacity, transform;
+}
+/* Variantes direccionales: data-reveal="left|right|scale" (por defecto: up). */
+[data-reveal='left'] {
+  transform: translateX(-32px);
+}
+[data-reveal='right'] {
+  transform: translateX(32px);
+}
+[data-reveal='scale'] {
+  transform: scale(0.95);
 }
 [data-reveal].is-visible {
   opacity: 1;

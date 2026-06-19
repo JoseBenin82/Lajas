@@ -7,7 +7,7 @@
  */
 
 import { useEffect, useState } from 'react';
-import { NavLink, Link } from 'react-router-dom';
+import { NavLink, Link, useLocation } from 'react-router-dom';
 import { useCart } from '../context/cart-store.js';
 import './Navbar.css';
 
@@ -23,6 +23,10 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
   const { count } = useCart();
+  const { pathname } = useLocation();
+  // El home arranca con el hero oscuro a pantalla completa: mientras no haya
+  // scroll ni menú abierto, el navbar va en claro para leerse sobre el video.
+  const overHero = pathname === '/' && !scrolled && !open;
 
   // Detecta scroll para alternar el fondo sólido.
   useEffect(() => {
@@ -41,7 +45,11 @@ export default function Navbar() {
   }, [open]);
 
   return (
-    <header className={`nav ${scrolled || open ? 'nav--solid' : ''}`}>
+    <header
+      className={`nav ${scrolled || open ? 'nav--solid' : ''} ${
+        overHero ? 'nav--over-hero' : ''
+      }`}
+    >
       <div className="nav__inner container">
         <Link to="/" className="nav__brand" onClick={() => setOpen(false)}>
           <span className="nav__mark" aria-hidden="true" />

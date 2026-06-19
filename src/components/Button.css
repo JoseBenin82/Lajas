@@ -19,7 +19,7 @@
   white-space: nowrap;
   padding: var(--btn-py) var(--btn-px);
   border: 1.5px solid transparent;
-  border-radius: var(--radius-pill);
+  border-radius: var(--radius-sm);
   cursor: pointer;
   transition: background-color var(--t-fast), color var(--t-fast),
     border-color var(--t-fast), transform var(--t-fast), box-shadow var(--t-base);
