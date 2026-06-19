@@ -14,17 +14,21 @@
   transition: background-color var(--t-base), box-shadow var(--t-base),
     border-color var(--t-base);
   border-bottom: 1px solid transparent;
-  /* Entrada al cargar (slideInDown). `backwards` evita dejar un transform
-     permanente en .nav (rompería el posicionamiento fixed del menú móvil). */
+  /* Entrada al cargar (slide-down). IMPORTANTE: se anima `top` + `opacity`, NO
+     `transform`. Un `transform` en .nav lo convierte en bloque contenedor de sus
+     hijos position:fixed, y entonces el menú móvil (fixed con inset) se ancla a
+     la barra de 72px en vez de a la pantalla → colapsa y deja ver la página
+     detrás. `top`/`opacity` no crean bloque contenedor, así el menú siempre
+     cubre a pantalla completa. */
   animation: navDown 0.6s var(--ease-out) backwards;
 }
 @keyframes navDown {
   from {
-    transform: translateY(-100%);
+    top: calc(-1 * var(--nav-height));
     opacity: 0;
   }
   to {
-    transform: translateY(0);
+    top: 0;
     opacity: 1;
   }
 }
@@ -202,7 +206,15 @@
      (CTA + WhatsApp) empujado con margin-top:auto para llenar el espacio. */
   .nav__menu {
     position: fixed;
-    inset: var(--nav-height) 0 0 0;
+    top: var(--nav-height);
+    left: 0;
+    right: 0;
+    /* Alto EXPLÍCITO (no depender de top+bottom para estirar, que en este
+       contexto no fijaba el alto y el panel colapsaba). Fallback en vh y luego
+       100dvh, que respeta la barra dinámica del navegador móvil para que el CTA
+       del pie no quede tapado. Si dvh no se soporta, queda el vh. */
+    height: calc(100vh - var(--nav-height));
+    height: calc(100dvh - var(--nav-height));
     z-index: 90;
     display: flex;
     flex-direction: column;
