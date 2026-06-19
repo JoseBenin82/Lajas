@@ -209,7 +209,7 @@
     justify-content: flex-start;
     align-items: stretch;
     gap: 0;
-    padding: var(--space-4) var(--space-5)
+    padding: var(--space-5) var(--space-5)
       calc(var(--space-6) + env(safe-area-inset-bottom, 0px));
     margin: 0;
     background: var(--bg);
@@ -297,14 +297,16 @@
     color: var(--ink);
   }
 
-  /* Entrada escalonada de los elementos al abrir el menú. */
+  /* Entrada escalonada de los elementos al abrir el menú.
+     IMPORTANTE: la animación NO toca la opacidad. Antes usaba opacity:0 con
+     `backwards`, y si la animación no se disparaba/terminaba en el móvil los
+     ítems quedaban invisibles (menú vacío). Animar solo el desplazamiento
+     garantiza que SIEMPRE se vean, con o sin animación. */
   @keyframes menuItemIn {
     from {
-      opacity: 0;
-      transform: translateY(12px);
+      transform: translateY(10px);
     }
     to {
-      opacity: 1;
       transform: none;
     }
   }
